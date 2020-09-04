@@ -10,8 +10,12 @@ class bcolors:
         BOLD = '\033[1m'
         UNDERLINE = '\033[4m'
 
-with open('./extensions.json') as f:
-    extensions = json.load(f)
+try:
+    with open('./extensions.json') as f:
+        extensions = json.load(f)
+except FileNotFoundError:
+    print(bcolors.FAIL + 'Error: extensions.json file must be in the same folder than auto-folder.py' + bcolors.ENDC)
+    sys.exit(2)
 
 folders = list(extensions.keys())
 folders.append('other')
@@ -41,6 +45,7 @@ def main(argv):
     for folder in folders:
         if(os.path.isdir(path + folder)==False):
             os.mkdir(path + folder)
+            print('folder ' + bcolors.OKGREEN + folder + bcolors.ENDC + ' created')
 
     while True:
 
