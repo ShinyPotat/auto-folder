@@ -1,6 +1,6 @@
 ﻿# Auto-Folder
 
-Proyecto en donde se automatiza la organización de una carpeta.
+Proyecto en donde se automatiza la organización de una carpeta. Se puede modificar el archivo `extensions.json` para modificar el nombre de las carpetas y sus respectivas extensiones.
 
 ## Funcionamiento
 
