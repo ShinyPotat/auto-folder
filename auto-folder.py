@@ -43,8 +43,8 @@ def main(argv):
 
     # Crear las carpetas si no existen
     for folder in folders:
-        if(os.path.isdir(path + folder)==False):
-            os.mkdir(path + folder)
+        if(os.path.isdir(os.path.join(path, folder))==False):
+            os.mkdir(os.path.join(path, folder))
             print('folder ' + bcolors.OKGREEN + folder + bcolors.ENDC + ' created')
 
     while True:
