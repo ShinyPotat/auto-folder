@@ -1,0 +1,24 @@
+{
+    "images": [
+        "jpeg",
+        "jpg",
+        "png",
+        "ico"
+    ],
+    "documents": [
+        "txt",
+        "doc",
+        "docx",
+        "pdf"
+    ],
+    "videos": [
+        "mp4",
+        "mkv",
+        "gif"
+    ],
+    "music": [
+        "mp3",
+        "wav",
+        "mpeg"
+    ]
+}

@@ -1,4 +1,4 @@
-import os, sys, getopt
+import os, sys, getopt, json
 
 class bcolors:
         HEADER = '\033[95m'
@@ -10,45 +10,26 @@ class bcolors:
         BOLD = '\033[1m'
         UNDERLINE = '\033[4m'
 
-extensions = {
-        "images": [
-            'jpeg',
-            'jpg',
-            'png',
-            'ico'
-        ],
-        "documents": [
-            'txt',
-            'doc',
-            'docx',
-            'pdf'
-        ],
-        "videos": [
-            'mp4',
-            'mkv',
-            'gif'
-        ],
-        "music": [
-            'mp3',
-            'wav',
-            'mpeg'
-        ]
-    }
+with open('./extensions.json') as f:
+    extensions = json.load(f)
 
-folders = ['/images', '/documents', '/videos', '/music', '/other']
+folders = list(extensions.keys())
+folders.append('other')
 
 def main(argv):
 
+    #Comprobar los valores introducidos por los usuarios
     if len(argv) == 0 or len(argv) > 2 or argv[0].startswith('-')==False:
         print(bcolors.FAIL + '<Syntax error>: ' + bcolors.ENDC + 'auto-folder.py -p <path>')
         sys.exit(2) 
 
     try:
-      opts, args = getopt.getopt(argv,"hp:",["path=",])
+      opts, args = getopt.getopt(argv,"hp:")
     except getopt.GetoptError:
         print(bcolors.FAIL + '<Syntax error>: ' + bcolors.ENDC + 'auto-folder.py -p <path>')
         sys.exit(2)
 
+    #Comprobar el flag que se ha usado
     for opt, arg in opts:
         if opt == '-h':
             print('auto-folder.py -p <path>')
@@ -56,12 +37,14 @@ def main(argv):
         elif opt in ("-p", "--path"):
             path = arg
 
+    # Crear las carpetas si no existen
     for folder in folders:
         if(os.path.isdir(path + folder)==False):
             os.mkdir(path + folder)
 
     while True:
 
+        #Listado de archivos
         files = [f for f in os.listdir(path) if os.path.isfile(os.path.join(path, f))]
 
         for file in files:
