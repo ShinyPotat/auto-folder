@@ -39,7 +39,7 @@ folders = ['/images', '/documents', '/videos', '/music', '/other']
 
 def main(argv):
 
-    if len(argv) > 2 or argv[0].startswith('-')==False:
+    if len(argv) == 0 or len(argv) > 2 or argv[0].startswith('-')==False:
         print(bcolors.FAIL + '<Syntax error>: ' + bcolors.ENDC + 'auto-folder.py -p <path>')
         sys.exit(2) 
 
@@ -55,9 +55,6 @@ def main(argv):
             sys.exit()
         elif opt in ("-p", "--path"):
             path = arg
-        else:
-            print(bcolors.FAIL + '<Syntax error>: ' + bcolors.ENDC + 'auto-folder.py -p <path>')
-            sys.exit(2)
 
     for folder in folders:
         if(os.path.isdir(path + folder)==False):
