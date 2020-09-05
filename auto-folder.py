@@ -28,7 +28,7 @@ def main(argv):
         sys.exit(2) 
 
     try:
-      opts, args = getopt.getopt(argv,"hp:")
+        opts, _args = getopt.getopt(argv,"hp:")
     except getopt.GetoptError:
         print(bcolors.FAIL + '<Syntax error>: ' + bcolors.ENDC + 'auto-folder.py -p <path>')
         sys.exit(2)
